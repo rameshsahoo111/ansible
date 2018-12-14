@@ -1,0 +1,25 @@
+---
+# yaml playbook to start virtualbox VM on remote host
+- name: Start Virtual machines on 192.168.0.106
+  hosts: vmhost
+  remote_user: ramesh
+  become: False
+  tasks:
+    - name: Start VM centos7
+      shell: vboxmanage startvm centos7 --type headless
+      args:
+        chdir: /home/ramesh
+        executable: /bin/bash
+
+    - name: Start VM fedora
+      shell: vboxmanage startvm fedora --type headless
+      args:
+        chdir: /home/ramesh
+        executable: /bin/bash
+
+    - name: Start VM rhel
+      shell: vboxmanage startvm rhel --type headless
+      args:
+        chdir: /home/ramesh
+        executable: /bin/bash
+...
