@@ -1,0 +1,24 @@
+---
+- name: Install few packages on the system
+  hosts:
+     - fedora.ansible.local
+     - centos.ansible.local
+
+  tasks:
+     - name: Install packages on the sytem
+       yum: {name: [bind, vim, vsftpd] , state: latest}
+       
+       Or 
+       #name: 
+       #   - vim
+       #   - bind
+       #   - vsftpd
+       #state: latest
+
+# 2nd Play 
+- name: Install vsftpd package on RHEL host
+  hosts: rhel
+  tasks:
+     - name: Use yum module to install package
+       yum: {name: vsftpd, state: latest}
+ ...
