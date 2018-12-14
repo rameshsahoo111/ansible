@@ -1,0 +1,25 @@
+---
+# Ansible playbook to stop Virtualbox VM on remote host
+- name: Stop Virtual machines on 192.168.0.106
+  hosts: vmhost
+  remote_user: ramesh
+  become: False
+  tasks:
+    - name: Stop VM centos7
+      shell: vboxmanage controlvm centos7 poweroff
+      args:
+        chdir: /home/ramesh
+        executable: /bin/bash
+
+    - name: Stop VM fedora
+      shell: vboxmanage controlvm fedora poweroff
+      args:
+        chdir: /home/ramesh
+        executable: /bin/bash
+
+    - name: Stop VM rhel
+      shell: vboxmanage controlvm rhel poweroff
+      args:
+        chdir: /home/ramesh
+        executable: /bin/bash
+...
