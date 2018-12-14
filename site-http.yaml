@@ -1,0 +1,22 @@
+---
+- name: Play book for HTTP server installation and configuration
+  hosts: fedora, centos
+  tasks:
+    - name: Install package HTTP using yum
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Copy index.html to remote host
+      copy:
+        src: files/index.html
+        dest: /var/www/html/index.html
+        owner: apache
+        group: apache
+        mode: 0644
+
+    - name: Start http service on remote host
+      service:
+           name: httpd
+           enabled: True
+           state: started
