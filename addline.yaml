@@ -1,0 +1,7 @@
+---
+- name: Insert line into the file
+  hosts: [fedora, centos]
+  tasks:
+     - name: Make changes to host files
+       lineinfile: {path: /tmp/hosts , line: '192.0.2.42 server.example.com server' , create: yes , state: present}
+... 
