@@ -1,0 +1,41 @@
+---
+- name: 1st example to create users
+  hosts: allos
+  vars:
+      USERS:
+            - u3
+            - u4
+
+  tasks:
+       - name: Make sure the user 'ramesh' present
+         user:
+             name: ramesh
+             uid: 7000
+             state: present
+
+   
+       - name: 2nd example to create uses in loop
+         user:
+             name: "{{ item }}"
+             state: present
+
+         with_items: 
+                   - u1
+                   - u2
+
+       - name: 3rd Example to create users in loop
+         user:
+             name: "{{ item }}"
+         with_items: "{{ USERS }}"
+
+       - name: 4th example to create use with multiple attributes in loop
+         user: 
+             name: "{{ item.name }}"
+             group: "{{ item.group }}"
+             uid: "{{ item.uid }}"
+             state: present
+
+         with_items:
+                 - {name: 'u5', uid: 8001, group: 'wheel'}
+                 - {name: 'u6', uid: 8002, group: 'wheel'}
+                 - {name: 'u7', uid: 8003, group: 'wheel'}
